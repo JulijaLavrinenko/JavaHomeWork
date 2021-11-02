@@ -22,7 +22,7 @@ public class Reader {
     }
 
     public String getInfo() {
-        return nameReader + ", номер читательского: " + numKvytok + ", факультет: " + nameFakultet + ", дата народження: "
+        return nameReader + ", номер читательского: " + numKvytok + ", факультет: " + nameFakultet + ", дата рождения: "
                 + dateBirthday + ", телефон: " + numPhone + ".";
     }
 
