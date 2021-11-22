@@ -33,24 +33,25 @@ public class FileNumbers {
 
     }
    public static void createOddNumbersFile() {
-        String textInFile = "";
-        try (BufferedReader reader = new BufferedReader(new FileReader("numbers.txt"))) {
-            textInFile = reader.lines()
-                    .map(n -> replaceChetNum(n))
-                    .collect(Collectors.joining("\n"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+       String textInFile = "";
+       StringBuilder sbRead = new StringBuilder();
+       try (BufferedReader reader = new BufferedReader(new FileReader("numbers.txt"))) {
+           while ((textInFile = reader.readLine()) != null) {
+               final String forNewFile = replaceChetNum(textInFile);
+               sbRead.append(forNewFile).append("\n");
+           }
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
 
         try (FileWriter writer = new FileWriter("odd-numbers.txt", false)) {
-           writer.write(textInFile);
+           writer.write(sbRead.toString());
            writer.flush();
        } catch (IOException e) {
            e.printStackTrace();
        }
-        System.out.println(textInFile); // демонстрация на консоль содержимого файла
+        System.out.println(sbRead); // демонстрация на консоль содержимого файла
     }
 
     // замена четых цифр на 0
